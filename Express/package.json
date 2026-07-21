@@ -3,6 +3,7 @@
     "start": "node server",
     "dev": "node --watch --env-file=.env server"
   },
+  "type": "module",
   "dependencies": {
     "express": "^5.2.1"
   }
