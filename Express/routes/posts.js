@@ -56,7 +56,9 @@ router.put('/:id', (req, res, next) => {
   const post = posts.find((post) => post.id === id);
 
   if(!post) {
-    return res.status(404).json({msg: `A post with the id of ${id} was not found`})
+    const error = new Error(`A post with the id of ${id} was not found`);
+    error.status = 404;
+    return next(error);
   }
 
   post.title = req.body.title;
@@ -69,7 +71,9 @@ router.delete('/:id', (req, res, next) => {
   const post = posts.find((post) => post.id === id);
 
   if(!post) {
-    return res.status(404).json({msg: `A post with the id of ${id} was not found`})
+    const error = new Error(`A post with the id of ${id} was not found`);
+    error.status = 404;
+    return next(error);
   }
 
   posts = posts.filter((post) => post.id != id);
